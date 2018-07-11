@@ -103,6 +103,6 @@ def hill_climbing(data):
         m.append(0)
         score = increase_radius(data, m)
         if score > best:
-            best, bp = score, p
-        print(m, score)
+            best, bp = score, m
     print('Best score has point {}: {}'.format(bp, best))
+    return bp

@@ -20,13 +20,19 @@ if __name__ == '__main__':
     dataset.sort(key=lambda x: x[1])
     dataset.sort(key=lambda x: x[0])
     
-    """
-    plt.plot([d[0] for d in dataset], [d[1] for d in dataset])
+    bp = pies.hill_climbing(dataset)
+    
     for p in dataset:
-        plt.plot(p[0], p[1], color=('green' if p[2] else 'red'), marker='o')
-        
+        if p[0] == bp[0] and p[1] == bp[1]:
+            plt.plot(p[0], p[1], color='blue', marker='o')
+        else:
+            plt.plot(p[0], p[1], color=('green' if p[2] else 'red'), marker='o')
+
+    circle = plt.Circle((bp[0],bp[1]), radius=bp[3], fill=False)
+    ax=plt.gca()
+    ax.add_patch(circle)
+    plt.axis('scaled')
+    
     plt.plot([fun(n) for n in range(0, 100)])
     plt.show()
-    """
 
-    pies.hill_climbing(dataset)
